@@ -1,49 +1,69 @@
 import React from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import Search from '../pages/Search';
-import Favorites from '../pages/Favorites';
-import Profile from '../pages/Profile';
+import { Link } from 'react-router-dom';
+import { getUser } from '../services/userAPI';
+import Loading from './Loading';
 
 class Header extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      usuario: '',
+      carregando: false,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      carregando: true,
+    }, async () => {
+      const { name } = await getUser();
+      this.setState({
+        usuario: name,
+        carregando: false,
+      });
+    });
+  }
 
   render() {
+    const { usuario, carregando } = this.state;
     return (
-      <header data-testid="header-component">
-        <BrowserRouter>
+      carregando ? <Loading /> : (
+        <header data-testid="header-component">
+          <p data-testid="header-user-name">{usuario}</p>
           <nav>
             <ul>
 
               <li>
                 <Link
-                  to="../pages/Search" 
-                  data-testid="link-to-search"> 
+                  to="./search"
+                  data-testid="link-to-search"
+                >
                   Pesquisa
                 </Link>
               </li>
 
               <li>
                 <Link
-                  to="../pages/Favorites"
-                  data-testid="link-to-favorites">
+                  to="./favorites"
+                  data-testid="link-to-favorites"
+                >
                   Favoritas
                 </Link>
               </li>
 
               <li>
                 <Link
-                  to="../pages/Profile" 
-                  data-testid="link-to-profile"> 
+                  to="./profile"
+                  data-testid="link-to-profile"
+                >
                   Perfil
                 </Link>
               </li>
 
             </ul>
           </nav>
-          <Route exact path="../pages/Search" component={ Search } />
-          <Route exact path="../pages/Favorites" component={ Favorites } />
-          <Route exact path="../pages/Profile" component={ Profile } />
-        </BrowserRouter>
-      </header>
+        </header>
+      )
     );
   }
 }

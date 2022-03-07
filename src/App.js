@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from './components/Header';
 import Album from './pages/Album';
 import Favorites from './pages/Favorites';
 import Login from './pages/Login';
@@ -13,7 +12,6 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Header />
         <Switch>
           <Route path="/album/:id" render={ () => <Album /> } />
           <Route path="/profile/edit" render={ () => <ProfileEdit /> } />
@@ -21,7 +19,7 @@ class App extends React.Component {
           <Route path="/favorites" render={ () => <Favorites /> } />
           <Route path="/search" render={ () => <Search /> } />
           <Route exact path="/" render={ () => <Login /> } />
-          <Route path="/" render={ () => <NotFound /> } />
+          <Route path="*" render={ () => <NotFound /> } />
         </Switch>
       </BrowserRouter>
     );
