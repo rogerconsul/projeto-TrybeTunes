@@ -6,6 +6,7 @@ import Loading from './Loading';
 class Header extends React.Component {
   constructor() {
     super();
+
     this.state = {
       usuario: '',
       carregando: false,
@@ -35,7 +36,7 @@ class Header extends React.Component {
 
               <li>
                 <Link
-                  to="./search"
+                  to="/search"
                   data-testid="link-to-search"
                 >
                   Pesquisa
@@ -44,7 +45,7 @@ class Header extends React.Component {
 
               <li>
                 <Link
-                  to="./favorites"
+                  to="/favorites"
                   data-testid="link-to-favorites"
                 >
                   Favoritas
@@ -53,7 +54,7 @@ class Header extends React.Component {
 
               <li>
                 <Link
-                  to="./profile"
+                  to="/profile"
                   data-testid="link-to-profile"
                 >
                   Perfil
