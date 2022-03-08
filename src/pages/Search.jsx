@@ -34,7 +34,6 @@ class Search extends React.Component {
         albuns: [...data],
         procurou: true,
       }));
-      console.log(data);
     });
   }
 
