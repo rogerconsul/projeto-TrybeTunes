@@ -15,6 +15,7 @@ class Card extends React.Component {
       <Link
         to={ `/album/${collectionId}` }
         data-testid={ `link-to-album-${collectionId}` }
+        getMusics={ collectionId }
       >
         <div>
           <img src={ artworkUrl100 } alt={ artistName } />
@@ -31,7 +32,7 @@ Card.propTypes = {
     artistName: PropTypes.string.isRequired,
     artworkUrl100: PropTypes.string.isRequired,
     collectionName: PropTypes.string.isRequired,
-    collectionId: PropTypes.string.isRequired,
+    collectionId: PropTypes.number.isRequired,
   }).isRequired,
 };
 export default Card;

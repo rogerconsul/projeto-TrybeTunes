@@ -28,6 +28,7 @@ class Search extends React.Component {
       pesquisado: valorInput,
     }, async () => {
       const data = await searchAlbumsAPI(valorInput);
+      console.log(data);
       this.setState(() => ({
         carregando: false,
         valorInput: '',
