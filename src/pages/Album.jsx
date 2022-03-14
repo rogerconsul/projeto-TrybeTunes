@@ -4,6 +4,7 @@ import MusicCard from '../components/MusicCard';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor() {
@@ -13,6 +14,7 @@ class Album extends React.Component {
       musicsList: [],
       artista: '',
       album: '',
+      // musicasFavoritas: [],
     };
   }
 
@@ -24,6 +26,7 @@ class Album extends React.Component {
       album: musicas[0].collectionName,
       carregando: false,
     }));
+    getFavoriteSongs().then((algo) => console.log(algo));
   }
 
   render() {
