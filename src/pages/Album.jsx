@@ -14,7 +14,7 @@ class Album extends React.Component {
       musicsList: [],
       artista: '',
       album: '',
-      // musicasFavoritas: [],
+      musicasFavoritas: [],
     };
   }
 
@@ -26,11 +26,13 @@ class Album extends React.Component {
       album: musicas[0].collectionName,
       carregando: false,
     }));
-    getFavoriteSongs().then((algo) => console.log(algo));
+    getFavoriteSongs().then((algo) => this.setState({
+      musicasFavoritas: algo,
+    }));
   }
 
   render() {
-    const { carregando, musicsList, artista, album } = this.state;
+    const { carregando, musicsList, artista, album, musicasFavoritas } = this.state;
     const refinado = musicsList.slice(1);
     return (
       <div data-testid="page-album">
@@ -49,6 +51,7 @@ class Album extends React.Component {
               trackName={ musica.trackName }
               previewUrl={ musica.previewUrl }
               trackId={ musica.trackId }
+              checkFavorito={ musicasFavoritas }
             />))}
           </div>
 

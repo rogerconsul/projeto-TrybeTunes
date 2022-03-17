@@ -14,6 +14,17 @@ class MusicCard extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    const { checkFavorito, trackId } = this.props;
+    const numeroFavorito = []
+    numeroFavorito.push(checkFavorito.map((musica) => musica));
+    console.log(numeroFavorito);
+    // const ehVerdade = checkFavorito.trackId === trackId;
+    // this.setState({
+    //   checkado: ehVerdade,
+    // });
+  }
+
   async handleChange() {
     this.setState({
       carregando: true,
@@ -29,7 +40,7 @@ class MusicCard extends React.Component {
 
   render() {
     const { trackName, previewUrl, trackId } = this.props;
-    const { carregando, checkado } = this.state;
+    const { carregando, checkado, checkFavorito } = this.state;
     if (carregando) {
       return (<Loading />);
     }
